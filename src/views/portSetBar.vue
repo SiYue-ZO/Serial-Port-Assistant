@@ -90,12 +90,14 @@ const readSerialData = async () => {
                     const { value, done } = await reader.value.read();
                     if (done) break;
                     
-                    // 将接收到的数据转换为文本并发送到 showData 组件
-                    const text = new TextDecoder().decode(value);
-                    emit('data-received', text);
+                    // 调试输出接收到的原始数据
+                    console.log('Raw serial data:', value);
+                    
+                    // 直接发送原始数据
+                    emit('data-received', value);
                 }
             } catch (error) {
-                // 静默处理读取错误
+                console.error('Error reading serial data:', error);
             } finally {
                 if (reader.value) {
                     await reader.value.releaseLock();
@@ -103,9 +105,10 @@ const readSerialData = async () => {
             }
         }
     } catch (error) {
-        // 静默处理循环错误
+        console.error('Error in readSerialData:', error);
     }
 };
+
 
 // 定义事件
 const emit = defineEmits(['connection-change', 'data-received']);
@@ -301,7 +304,7 @@ button.connected:hover {
 /* 响应式布局 */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
+        width: 30%;
         height: auto;
         position: relative;
     }
