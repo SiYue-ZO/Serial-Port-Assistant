@@ -104,7 +104,7 @@ const emit = defineEmits(['send-data'])
                 >
                 <span v-if="autoSend" class="interval-unit">ms</span>
                 <button class="control-btn" @click="clearSendData" title="清空数据">
-                    <i class="fas fa-trash"></i>
+                    <i class="fas fa-trash">清空</i>
                 </button>
                 <button class="control-btn send-btn" @click="handleSend" title="发送数据">
                     <i class="fas fa-paper-plane"></i>
